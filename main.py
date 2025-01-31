@@ -1,19 +1,19 @@
 import logging
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 logging.basicConfig(level=logging.INFO)
 
+# Read the token from the environment variable 'token_zb'
 BOT_TOKEN = os.getenv("token_zb")
-if not BOT_TOKEN:
-    raise ValueError("No token_zb found in environment variables!")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     /start handler
-    Sends a message with an inline button that opens the miniapp inside Telegram.
+    Sends a message with an inline button that opens your miniapp inside Telegram (WebApp).
     """
-    # Inline keyboard with a single button that opens your miniapp as a WebApp
+    # Inline keyboard with a single button that opens the miniapp via WebApp
     keyboard = [
         [
             InlineKeyboardButton(
@@ -29,7 +29,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=reply_markup
     )
 
-
 async def main():
     # Build the bot application
     application = ApplicationBuilder().token(BOT_TOKEN).build()
@@ -39,7 +38,6 @@ async def main():
 
     # Start polling
     await application.run_polling()
-
 
 if __name__ == "__main__":
     import asyncio
