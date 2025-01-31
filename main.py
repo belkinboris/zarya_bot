@@ -21,15 +21,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [
             InlineKeyboardButton(
-                text="Open MiniApp",
-                web_app=WebAppInfo(url="https://belkinboris.github.io/Zarya/")
+                text="В Зарю 😊",
+                web_app=WebAppInfo(url="https://belkinboris.github.io/zarya/")
             )
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        text="Hello! Click the button below to open the miniapp inside Telegram:",
+        text="Привет! Мы рады тебя видеть! Чтобы продолжить, нажимай на кнопку ниже:",
         reply_markup=reply_markup
     )
 
