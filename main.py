@@ -21,7 +21,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [
             InlineKeyboardButton(
-                text="В Зарю 😊",
+                text="В Зарю 🌅",
                 web_app=WebAppInfo(url="https://belkinboris.github.io/zarya/")
             )
         ]
@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        text="Привет! Мы рады тебя видеть! Чтобы продолжить, нажимай на кнопку ниже:",
+        text="Привет! Мы рады тебя видеть! Чтобы продолжить, нажми на кнопку ниже:",
         reply_markup=reply_markup
     )
 
