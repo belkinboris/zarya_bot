@@ -1,19 +1,23 @@
 import logging
 import os
+import nest_asyncio
+import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
+# 1) Allow nested event loop usage
+nest_asyncio.apply()
+
 logging.basicConfig(level=logging.INFO)
 
-# Read the token from the environment variable 'token_zb'
+# 2) Read the token from environment variable 'token_zb'
 BOT_TOKEN = os.getenv("token_zb")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     /start handler
-    Sends a message with an inline button that opens your miniapp inside Telegram (WebApp).
+    Sends a message with an inline button that opens your miniapp inside Telegram.
     """
-    # Inline keyboard with a single button that opens the miniapp via WebApp
     keyboard = [
         [
             InlineKeyboardButton(
@@ -30,15 +34,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 async def main():
-    # Build the bot application
+    # 3) Build the bot application
     application = ApplicationBuilder().token(BOT_TOKEN).build()
 
-    # Register the /start handler
+    # 4) Add the /start command handler
     application.add_handler(CommandHandler("start", start))
 
-    # Start polling
+    # 5) Run the bot until you press Ctrl-C or the process is stopped
     await application.run_polling()
 
+# 6) Re-use the existing event loop rather than creating a new one
 if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+    asyncio.get_event_loop().run_until_complete(main())
