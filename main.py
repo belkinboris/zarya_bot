@@ -37,7 +37,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [
             InlineKeyboardButton(
                 text="В Зарю 🌅",
-                web_app=WebAppInfo(url="https://belkinboris.github.io/zarya/")
+                web_app=WebAppInfo(url="https://t.me/Zarya_Hub_Bot?startapp=1")
                 # ВАЖНО: URL должен совпадать с доменом, указанным в BotFather /setdomain
             )
         ]
